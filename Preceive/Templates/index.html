@@ -23,9 +23,11 @@ https://templatemo.com/tm-518-sentra
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/light-box.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl-carousel.css' %}">
-    <link rel="stylesheet" href="{% static 'css/templatemo-style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/templatemo-style.css' %}">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
 
     <script src="{% static 'js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
 
@@ -60,7 +62,7 @@ https://templatemo.com/tm-518-sentra
 
     <div class="sidebar-navigation hidde-sm hidden-xs">
         <div class="logo">
-            <a class="ml16" href="#">Quad Squad</a>
+            <a class="ml16" href="#">Precieve</a>
         </div>
         <nav>
             <ul>
@@ -310,17 +312,6 @@ https://templatemo.com/tm-518-sentra
             </div>
             <!-- </section>-->
             <section id="projects" class="content-section">
-                <!-- <div class="section-heading">
-                <h1 class="ml1">
-                    <span class="text-wrapper">
-                      <span class="line line1"></span>
-                    <span class="letters">FEATURED WORK</span>
-                    <span class="line line2"></span>
-                    </span>
-                </h1>
-                <p>Praesent pellentesque efficitur magna,
-                    <br>sed pellentesque neque malesuada vitae.</p>
-            </div>-->
 
                 <div class="section-content">
                     <div class="masonry">
@@ -371,16 +362,24 @@ https://templatemo.com/tm-518-sentra
                 </div>
                 <div class="col-md-12">
                     <div class="box-video">
-                        
-                        <!--just check if play is clicked, send 0 to the backend for camera access and processing until user sends pause or stop-->
-                        <div class="video-container">
-                            <div class="bg-video" style="background-image: url(https://unsplash.imgix.net/photo-1425036458755-dc303a604201?fit=crop&fm=jpg&q=75&w=1000);">
-                                <div class="bt-play">Play</div>
-                            </div>
-                            <div class="video-container">
-                                <iframe width="100%" height="520" src="https://www.youtube.com/embed/j-_7Ub-Zkow?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-                            </div>
-                        
+                        <div class="drag-area">
+                            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                            <span>DRAG AND DROP</span>
+                            <span>OR</span>
+                            <button>Browse File</button>
+                            <input type="file" hidden>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="accent-button button">
+                            <a href="#blog">Result</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="accent-button button">
+                            <a href="#blog">Save Snap</a>
                         </div>
                     </div>
                 </div>
@@ -602,6 +601,7 @@ https://templatemo.com/tm-518-sentra
     <script src="{% static 'js/anime.js' %}"></script>
     <script src="{% static 'js/anime2.js' %}"></script>
     <script src="{% static 'js/anime3.js' %}"></script>
+    <script src="{% static 'js/project.js' %}"></script>
 
     <script>
         // Hide Header on on scroll down
@@ -643,7 +643,7 @@ https://templatemo.com/tm-518-sentra
             lastScrollTop = st;
         }
     </script>
-    
+
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
 

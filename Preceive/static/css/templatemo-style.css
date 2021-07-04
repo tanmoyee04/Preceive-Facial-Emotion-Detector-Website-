@@ -8,6 +8,7 @@ https://templatemo.com/tm-518-sentra
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 body {
     font-family: 'Open Sans', sans-serif;
     background-color: #dad8c9;
@@ -188,9 +189,9 @@ header {
     color: #402d2d;
     /* padding: 5px 25px;*/
     font-weight: 800;
-    font-size: 2em;
+    font-size: 15px;
     text-transform: uppercase;
-    letter-spacing: 0.5em;
+    letter-spacing: 1em;
     overflow: hidden;
 }
 
@@ -1049,7 +1050,7 @@ nav .active-section span {
     display: inline;
 }
 
-#blog .item .text-content h4 {
+#blog .tabgroup .item .text-content h4 {
     padding-top: 7.5px;
     padding-left: 10px;
     margin-top: 0px;
@@ -1429,4 +1430,57 @@ nav .active-section span {
         padding-left: 15px;
         padding-right: 15px;
     }
+}
+
+.drag-area {
+    border: 2px dashed #fff;
+    height: 500px;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #466246;
+}
+
+.drag-area.active {
+    border: 2px solid rgba(171, 197, 171, 0.9);
+}
+
+.drag-area .icon {
+    font-size: 100px;
+    color: rgba(183, 189, 183, 0.9);
+}
+
+.drag-area header {
+    font-size: 30px;
+    font-weight: 500;
+    color: rgba(171, 197, 171, 0.9);
+}
+
+.drag-area span {
+    font-size: 25px;
+    font-weight: 500;
+    color: rgba(171, 197, 171, 0.9);
+    margin: 10px 0 15px 0;
+}
+
+.drag-area button {
+    padding: 10px 25px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: rgba(183, 189, 183, 0.9);
+    color: #466246;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.drag-area img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
 }
