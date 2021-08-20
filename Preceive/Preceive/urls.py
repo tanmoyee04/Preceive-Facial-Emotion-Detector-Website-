@@ -17,8 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from homepage import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url('^$',views.index,name='Homepage'),
-]
+    url('detect',views.emotion,name='detect'),
+    url('feedback',views.takeFeedback,name='feedback'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

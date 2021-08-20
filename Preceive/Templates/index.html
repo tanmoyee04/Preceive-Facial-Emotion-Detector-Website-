@@ -17,7 +17,7 @@ https://templatemo.com/tm-518-sentra
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
@@ -27,12 +27,10 @@ https://templatemo.com/tm-518-sentra
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-
 
     <script src="{% static 'js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
 
@@ -40,7 +38,7 @@ https://templatemo.com/tm-518-sentra
 
 <body>
 
-
+    {% include 'messages.html' %}
 
     <header class="nav-down responsive-nav hidden-lg hidden-md">
         <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
@@ -118,10 +116,10 @@ https://templatemo.com/tm-518-sentra
 
         <!--</ul>-->
         <div class="social-links">
-           <a href=""><i class="fab fa-facebook-f"></i></a></li>
-            <a href=""><i class="fab fa-instagram"></i></a>
-           <a href=""><i class="fab fa-linkedin-in"></i></a>
-        </div>
+            <a href=""><i class="fab fa-facebook-f"></i></a>
+             <a href=""><i class="fab fa-instagram"></i></a>
+            <a href=""><i class="fab fa-linkedin-in"></i></a>
+         </div>
     </div>
 
     <div class="slider">
@@ -370,35 +368,63 @@ https://templatemo.com/tm-518-sentra
                         <a href="#blog">Live feed</a>
                     </div>
                 </div>
+                                    
                 <div class="col-md-12">
                     <div class="box-video">
                         <div class="drag-area">
+                            {% if img.solved and idx %} 
+                                <img src="{{img.solved.url}}" alt="">
+                            {% elif img.solved and not idx %}
+                                <video height="400" controls>
+                                    <source src="{{img.solved.url}}" type="video/mp4">
+                                </video>
+                                
+                            {% elif img and idx %}
+                                <img src="{{img.photo.url}}" alt="">
+                                
+                            {% elif img and not idx %}
+                                <video height="320" width="240" controls>
+                                    <source src="{{img.photo.url}}" type="video/mp4">
+                                </video>
+                                
+                            {% else %}
                             <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                            <span>UPLOAD YOUR IMAGE</span>
-                            <span>OR</span>
-                            <button>Browse File</button>
-                            <input type="file" hidden>
+                            <form method="post" enctype="multipart/form-data" action="/">
+                                {% csrf_token %}
+                                {{form}}
+                                <button>Upload</button>
+                            </form>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
+                
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="accent-button button">
-                            <a href="#blog">Show Result</a>
+                {% if img and not img.solved %}
+                <form method="post" enctype="multipart/form-data" action="detect">
+                {% csrf_token %}
+                    <div class="col-md-6">
+                        <div class="accent-button">
+                            <button type="submit">Result</button>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                </form>
+                {% endif %}
+                {% if img.solved %}
+                    <div class="col-md-6">
                         <div class="accent-button button">
-                            <a href="http://127.0.0.1:8000/">Reset</a>
-                        
+                            <a href="/media/{{img.solved.name}}" download="{{img.solved.name}}">Save</a>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="accent-button button">
-                            <a href="#blog">Save Snap</a>
-                        </div>
+                {% endif %}
+                <div class="col-md-4">
+                    <div class="accent-button button">
+                        <a href="http://127.0.0.1:8000/">Reset</a>
+                    
                     </div>
                 </div>
+                </div>
+                
             </div>
         </section>
         <section id="blog" class="content-section">
@@ -430,8 +456,6 @@ https://templatemo.com/tm-518-sentra
                                                 <h4>Akanksha Sinha</h4>
                                                 <span>3rd Year Computer Science</span>
                                                 <p>A Core team member at GirlScript Kolkata, Marketing team pursuing B.Tech in Information Technology from Institute of Engineering & Management, Kolkata. Skilled in C++, JAVA, C, Python, HTML/CSS/JS and SQL. A web developing and desiging enthusiast with a strong hold on front-end development and Software engineering.</p>
-
-
                                             </div>
                                         </div>
                                     </li>
@@ -443,10 +467,8 @@ https://templatemo.com/tm-518-sentra
                                             </div>
                                             <div class="text-content">
                                                 <h4>Bhargavi</h4>
-                                                <span>3rd year information technology</span>
+                                                <span>3rd year Information Technology</span>
                                                 <p>A Tech enthusiast and programmer currently pursuing  B.Tech focussed in Information Technology from IEM, Kolkata, skilled in python, HTML, Basic CSS, Basic JS, C, C++, Blockchain, Bitcoin, Decentralized Applications, decentralized networks, Ethereum, cryptography. Having knowledge especially in the field of blockchain development along with the basics of financial markets and digital Marketing.</p>
-
-
                                             </div>
                                         </div>
                                     </li>
@@ -458,12 +480,10 @@ https://templatemo.com/tm-518-sentra
                                             </div>
                                             <div class="text-content">
                                                 <h4> Tanmoyee Roy</h4>
-                                                <span>3rd year information technology</span>
+                                                <span>3rd year Information Technology</span>
                                                 <p>A core team member of GirlScript Kolkata capable of managing and conducting events and sharing knowledge.  
                                                     Skilled in Python, C++, C, ML and AI, HTML/CSS/JS, OpenCV, Tkinter, and SQL. 
                                                     A tech enthusiast, especially in web development, Machine learning, and computer vision. Strong education professional with B.Tech focused in Information Technology from Institute Of Engineering and Management.</p>
-
-
                                             </div>
                                         </div>
                                     </li>
@@ -475,11 +495,8 @@ https://templatemo.com/tm-518-sentra
                                             </div>
                                             <div class="text-content">
                                                 <h4> Sudarshana Dutta</h4>
-                                                <span>3rd year computer science</span>
-                                                <p>An enthusiastic software developer & programmer. Skilled in C++, Python, Data Analytics, Machine Learning, Image Processing, Django, Tensorflow, SQL, and GitHub. Being an artist, loves playing with code to explore art & creative designs, thus blending technology with artistry. Strong education professional with B.Tech focused in Information Technology from Institute Of Engineering and Management.
-                                                    </p>
-
-
+                                                <span>3rd year Computer Science</span>
+                                                <p>An enthusiastic software developer & programmer. Skilled in C++, Python, Data Analytics, Machine Learning, Image Processing, Django, Tensorflow, SQL, and GitHub. Being an artist, loves playing with code to explore art & creative designs, thus blending technology with artistry. Strong education professional with B.Tech focused in Computer Science Engineering from Institute Of Engineering and Management.</p>
                                             </div>
                                         </div>
                                     </li>
@@ -563,26 +580,27 @@ https://templatemo.com/tm-518-sentra
                     </div>
                 </div>
                 <div class="section-content">
-                    <form class="form" id="contact" action="#" method="post">
+                    <form class="form" method="post" enctype="multipart/form-data" id="contact" action="feedback" >
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-4">
                                 <fieldset>
-                                    <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
+                                    <input name="nameval" type="text" class="form-control" id="name" placeholder="Your name..." required="" >
                                 </fieldset>
                             </div>
                             <div class="col-md-4">
                                 <fieldset>
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="Your email..." required="">
+                                    <input name="emailval" type="email" class="form-control" id="email" placeholder="Your email..." required="">
                                 </fieldset>
                             </div>
                             <div class="col-md-4">
                                 <fieldset>
-                                    <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject..." required="">
+                                    <input name="subjectval" type="text" class="form-control" id="subject" placeholder="Subject..." required="">
                                 </fieldset>
                             </div>
                             <div class="col-md-12">
                                 <fieldset>
-                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                                    <textarea name="messageval" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
                                 </fieldset>
                             </div>
                             <div class="col-md-12">
@@ -598,9 +616,10 @@ https://templatemo.com/tm-518-sentra
 
         </section>
         <section class="footer">
-            <p>Copyright &copy; 2021 Quad Squad . Design: Team Quad Squad</p>
+            <p>Copyright &copy; 2021 Quad Squad . Design: Akanksha & Bhargavi</p>
         </section>
     </div>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
